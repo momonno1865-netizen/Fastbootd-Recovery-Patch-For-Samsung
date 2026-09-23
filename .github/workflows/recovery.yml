@@ -44,9 +44,9 @@ jobs:
         md5sum -t fastbootd-recovery.tar >> fastbootd-recovery.tar
         mv fastbootd-recovery.tar fastbootd-recovery.tar.md5
 
-    - name: Upload to Release
-      uses: softprops/action-gh-release@v2
+    - name: Upload Patched Recovery as Artifact
+      uses: actions/upload-artifact@v4
       with:
-        files: output/*.md5
         name: Patched-Recovery
-        tag_name: ${{ github.run_id }}
+        path: output/*.md5
+        if-no-files-found: error
